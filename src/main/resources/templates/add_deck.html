@@ -10,7 +10,7 @@
 <body>
 <h1>Add deck</h1>
 <div class="col-md-5">
-    <form action="/decks/save"
+    <form th:action="@{/decks/save}"
           method="post"
           th:object="${deck}">
         <input type="text" hidden="hidden" name="id" th:value="${deck.getId()}">

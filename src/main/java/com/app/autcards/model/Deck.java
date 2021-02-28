@@ -21,4 +21,12 @@ public class Deck {
     @OneToMany
     private List<Card> cards;
 
+    @ManyToOne
+    private OauthUser user;
+
 }
+
+
+//TODO GET THE CURRENT LOGGED IN USER AND SHOW INFO ABOUT HIM
+// TODO UPDATE LOGIN PAGE AND PERMISSIONS
+//

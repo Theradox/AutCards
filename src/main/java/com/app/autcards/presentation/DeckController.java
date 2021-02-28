@@ -3,6 +3,7 @@ package com.app.autcards.presentation;
 import com.app.autcards.model.Card;
 import com.app.autcards.model.Deck;
 import com.app.autcards.service.DeckService;
+import com.app.autcards.service.Impl.MyUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,11 @@ import java.util.List;
 @AllArgsConstructor
 public class DeckController {
     private final DeckService deckService;
+    private final MyUserService myUserService;
 
     @GetMapping
     public String getDeckPage(Model model) {
-        List<Deck> decks = this.deckService.findAll();
+        List<Deck> decks = this.deckService.findAllByUser();
         model.addAttribute("decks", decks);
         return "decks";
     }
