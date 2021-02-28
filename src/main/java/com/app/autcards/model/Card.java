@@ -1,5 +1,9 @@
 package com.app.autcards.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +11,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Card {
 
     @Id
@@ -24,29 +31,4 @@ public class Card {
         this.answer = answer;
     }
 
-    public Card(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
 }

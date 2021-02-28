@@ -3,6 +3,7 @@ package com.app.autcards.presentation;
 import com.app.autcards.model.Card;
 import com.app.autcards.model.Deck;
 import com.app.autcards.service.DeckService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +15,10 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/decks")
+@RequestMapping(value = "/decks")
+@AllArgsConstructor
 public class DeckController {
     private final DeckService deckService;
-
-
-    public DeckController(DeckService deckService) {
-        this.deckService = deckService;
-    }
 
     @GetMapping
     public String getDeckPage(Model model) {
@@ -30,7 +27,7 @@ public class DeckController {
         return "decks";
     }
 
-    @GetMapping("/{id}/open")
+    @GetMapping(value = "/{id}/open")
     public String openCards(Model model, @PathVariable Long id) {
         try {
             Deck deck = this.deckService.findById(id);
@@ -46,15 +43,15 @@ public class DeckController {
 
     }
 
-    @GetMapping("/add_deck")
+    @GetMapping(value = "/add_deck")
     public String addNewDeck(Model model) {
         model.addAttribute("deck", new Deck());
         return "add_deck";
     }
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save")
     public String saveDeck(@Valid Deck deck) {
-        this.deckService.save(deck);
+        this.deckService.saveDeck(deck);
         return "redirect:/decks";
     }
 }

@@ -3,18 +3,16 @@ package com.app.autcards.service.Impl;
 import com.app.autcards.model.Card;
 import com.app.autcards.repository.CardRepository;
 import com.app.autcards.service.CardService;
+import lombok.AllArgsConstructor;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
-
-    public CardServiceImpl(CardRepository cardRepository) {
-        this.cardRepository = cardRepository;
-    }
 
 
     @Override
