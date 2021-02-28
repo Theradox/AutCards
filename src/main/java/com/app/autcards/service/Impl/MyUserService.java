@@ -27,10 +27,5 @@ public class MyUserService extends OidcUserService {
         return this.userRepository.findById(email)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("User not found [%s]", email)));
     }
-//    public OauthUser saveDeckToUser() {
-////        OauthUser user = findById()
-////        this.userRepository.save()
-//    }
-
 
 }
