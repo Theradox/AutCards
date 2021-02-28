@@ -20,6 +20,9 @@ public class Deck {
         this.name = name;
         this.cards = cards;
     }
+    public Deck(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
