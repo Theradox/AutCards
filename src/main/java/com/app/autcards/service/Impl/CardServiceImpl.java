@@ -37,14 +37,14 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card saveCard(String question, String answer) {
-        Card card = new Card(question, answer);
+        var card = new Card(question, answer);
         return this.cardRepository.save(card);
     }
 
     @Override
     public Card save(Card card, Long deckId) {
-        Deck deck = this.deckService.findById(deckId);
-        List<Card> cards = deck.getCards();
+        var deck = this.deckService.findById(deckId);
+        var cards = deck.getCards();
         cards.add(card);
         deck.setCards(cards);
         cardRepository.save(card);
@@ -54,7 +54,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card updateCard(Long id, Card card) {
-        Card card1 = this.findById(id);
+        var card1 = this.findById(id);
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
         return this.cardRepository.save(card1);
