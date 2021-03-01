@@ -1,6 +1,7 @@
 package com.app.autcards.config;
 
 import com.app.autcards.model.OauthUser;
+import com.app.autcards.model.enumerations.RoleType;
 import com.app.autcards.model.user_details.MyAuthenticatedPrincipal;
 import com.app.autcards.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -35,8 +36,9 @@ public class Oauth2AuthenticationSuccessHandler implements AuthenticationSuccess
         DefaultOidcUser oidcUser = (DefaultOidcUser) token.getPrincipal();
 
         MyAuthenticatedPrincipal principal = (MyAuthenticatedPrincipal) authentication.getPrincipal();
+        RoleType role = RoleType.valueOf((authentication.getAuthorities().toArray()[0]).toString());
 
-        OauthUser user = new OauthUser(principal.getEmail(), principal.getUsername());
+        OauthUser user = new OauthUser(principal.getEmail(), principal.getUsername(), role);
 
         userRepository.save(user);
         //TODO REDIRECT PATH

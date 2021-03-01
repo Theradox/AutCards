@@ -24,7 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/templates/**", "/static/**").permitAll()
+                .antMatchers("/resources/**", "/templates/**", "/static/**",
+                        "/login", "/webjars/**", "/js/**", "/css/**", "/vendor/**",
+                        "/fonts/**","/images/**", "/resources/").permitAll()
+                .antMatchers("/decks").hasRole("USER")
+                .antMatchers("/logout").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()
@@ -34,7 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .oidcUserService(new MyUserService())
                 .and()
                 .and()
-                .logout().logoutUrl("/logout");
+                .logout(l -> l
+                        .logoutUrl("/logout")
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .logoutSuccessUrl("/login")
+                );
     }
 
     @Autowired

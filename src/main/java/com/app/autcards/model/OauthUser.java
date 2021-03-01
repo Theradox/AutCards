@@ -1,5 +1,6 @@
 package com.app.autcards.model;
 
+import com.app.autcards.model.enumerations.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,6 @@ public class OauthUser {
 
     private String first_name;
 
+    @Enumerated(EnumType.STRING)
+    private RoleType role;
 }

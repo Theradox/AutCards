@@ -24,8 +24,10 @@ public class MyUserService extends OidcUserService {
         return new MyUser(super.loadUser(userRequest));
     }
     public OauthUser findById(String email) {
-        return this.userRepository.findById(email)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("User not found [%s]", email)));
+        return this.userRepository.findById(email).orElse(null);
     }
+    // todo da ima 1 mesec da se vika nextShowcase(nextReminder)
+    //  na sekoja od kartite da se pojavuva box, znaci kje se cuva vo baza... if now.isBefore don't showcase the question
+    //  if now.isAfter, do showcase and get the same
 
 }
