@@ -2,6 +2,7 @@ package com.app.autcards.presentation;
 
 import com.app.autcards.model.Card;
 import com.app.autcards.model.Deck;
+import com.app.autcards.service.CardService;
 import com.app.autcards.service.DeckService;
 import com.app.autcards.service.Impl.MyUserService;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class DeckController {
     private final DeckService deckService;
+    private final CardService cardService;
     private final MyUserService myUserService;
 
     @GetMapping
@@ -56,4 +58,25 @@ public class DeckController {
         this.deckService.saveDeck(deck);
         return "redirect:/decks";
     }
+    @PostMapping(value = "/{id}/delete")
+    public String deleteDeck(@PathVariable Long id) {
+        this.deckService.deleteById(id);
+        return "redirect:/decks";
+    }
+
+    @GetMapping(value = "/{id}/add_cards")
+    public String addNewCard(Model model, @PathVariable Long id) {
+        Deck deck = this.deckService.findById(id);
+        model.addAttribute("deck", deck);
+        model.addAttribute("card", new Card());
+        return "add_card";
+    }
+
+    @PostMapping(value = "/{deckId}/saveCard")
+    public String saveCard(@Valid Card card, @PathVariable Long deckId) {
+        this.cardService.save(card, deckId);
+        return "redirect:/decks/{deckId}/add_cards";
+    }
+
+
 }
