@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <title>Cards</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <!--    <link rel="stylesheet/less" type="text/css" href="css/flashcard.less" />-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--    <script type="text/javascript" src="js/loader.js"></script>-->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 <div class="container mb-4">
@@ -19,8 +26,8 @@
         </thead>
         <tbody>
         <tr th:each="card : ${cards}">
-            <td th:text="${card.getQuestion()}"></td>
-            <td th:text="${card.getAnswer()}"></td>
+            <td class="msg-question" th:text="${card.getQuestion()}"></td>
+            <td class="msg-answer" th:text="${card.getAnswer()}"></td>
             <td class="text-right">
                 <form th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}" th:method="delete">
                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Delete</i></button>
@@ -30,8 +37,16 @@
         </tbody>
     </table>
     <a href="/decks" class="btn btn-block btn-dark">Back</a>
-
-
 </div>
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //hide the all of the element with class msg_body
+        $(".msg-answer").hide();
+        //toggle the componenet with class msg_body
+        $(".msg-question").click(function () {
+            $(this).next(".msg-answer").slideToggle(600);
+        });
+    });
+</script>
 </html>
