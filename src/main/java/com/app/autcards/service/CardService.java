@@ -17,5 +17,5 @@ public interface CardService {
 
     Card updateCard(Long id, Card card);
 
-    void deleteById(Long id);
+    void deleteById(Long id, Long deckId);
 }

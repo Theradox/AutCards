@@ -11,6 +11,7 @@ import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -61,7 +62,16 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id, Long deckId) {
+        var deck = this.deckService.findById(deckId);
+        deck.setCards(
+                deck.getCards()
+                        .stream()
+                        .filter(card -> !card.getId().equals(id))
+                        .collect(Collectors.toList())
+        );
+        this.deckRepository.save(deck);
         this.cardRepository.deleteById(id);
     }
+
 }

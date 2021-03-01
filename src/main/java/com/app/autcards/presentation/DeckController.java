@@ -78,5 +78,11 @@ public class DeckController {
         return "redirect:/decks/{deckId}/add_cards";
     }
 
+    @PostMapping(value = "/{id}/{deckId}/deleteCard")
+    public String deleteCard(@PathVariable Long id, @PathVariable Long deckId) {
+        this.cardService.deleteById(id, deckId);
+        return "redirect:/decks/{deckId}/open";
+    }
+
 
 }
