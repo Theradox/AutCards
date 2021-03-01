@@ -1,8 +1,11 @@
 package com.app.autcards.service.Impl;
 
 import com.app.autcards.model.Card;
+import com.app.autcards.model.Deck;
 import com.app.autcards.repository.CardRepository;
+import com.app.autcards.repository.DeckRepository;
 import com.app.autcards.service.CardService;
+import com.app.autcards.service.DeckService;
 import lombok.AllArgsConstructor;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
+    private final DeckService deckService;
+    private final DeckRepository deckRepository;
 
 
     @Override
@@ -33,6 +38,14 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card saveCard(String question, String answer) {
         Card card = new Card(question, answer);
+        return this.cardRepository.save(card);
+    }
+
+    @Override
+    public Card save(Card card, Long deckId) {
+        Deck deck = this.deckService.findById(deckId);
+        deck.getCards().add(card);
+        this.deckRepository.save(deck);
         return this.cardRepository.save(card);
     }
 

@@ -13,6 +13,8 @@ public interface CardService {
 
     Card saveCard(String question, String answer);
 
+    Card save(Card card, Long deckId);
+
     Card updateCard(Long id, Card card);
 
     void deleteById(Long id);

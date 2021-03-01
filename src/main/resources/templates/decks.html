@@ -22,6 +22,13 @@
                 <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-trash">Open</i></button>
                 </form>
+                <form th:action="@{/decks/{id}/add_cards(id=${deck.getId()})}">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-trash">Add Cards</i></button>
+                </form>
+                <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Delete</i></button>
+                </form>
+
             </td>
         </tr>
         </tbody>
