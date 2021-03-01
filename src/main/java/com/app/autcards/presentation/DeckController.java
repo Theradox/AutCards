@@ -75,7 +75,7 @@ public class DeckController {
     @PostMapping(value = "/{deckId}/saveCard")
     public String saveCard(@Valid Card card, @PathVariable Long deckId) {
         this.cardService.save(card, deckId);
-        return "redirect:/decks/add_card";
+        return "redirect:/decks/{deckId}/add_cards";
     }
 
 

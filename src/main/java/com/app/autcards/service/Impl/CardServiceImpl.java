@@ -44,9 +44,12 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card save(Card card, Long deckId) {
         Deck deck = this.deckService.findById(deckId);
-        deck.getCards().add(card);
-        this.deckRepository.save(deck);
-        return this.cardRepository.save(card);
+        List<Card> cards = deck.getCards();
+        cards.add(card);
+        deck.setCards(cards);
+        cardRepository.save(card);
+        deckRepository.save(deck);
+        return card;
     }
 
     @Override
