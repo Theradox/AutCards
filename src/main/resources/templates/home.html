@@ -44,10 +44,9 @@
 </nav>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Здраво </h1>
-        <h3 class="welcome-name" sec:authorize="isAuthenticated()"
-              style="color: black"
-              th:text="${#authentication.principal.attributes.given_name}"></h3>
+        <h1 class="display-4">AutCards</h1>
+        <p class="lead">Flashcard web app for people with autism, created with Java Spring</p>
+        <a href="/decks" class="btn btn-light" style="background-color: #5784BA; color: white">Continue to Flashcard Decks</a>
     </div>
 
 </div>
