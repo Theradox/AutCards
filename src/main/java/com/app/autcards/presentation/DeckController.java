@@ -56,6 +56,18 @@ public class DeckController {
         this.deckService.saveDeck(deck);
         return "redirect:/decks";
     }
+
+    @GetMapping(value = "/{id}/editDeck")
+    public String editDeckPage(Model model, @PathVariable Long id) {
+        try {
+            var deck = this.deckService.findById(id);
+            model.addAttribute("deck", deck);
+            return "add_deck";
+        } catch (RuntimeException ex) {
+            return "redirect:/decks?error=" + ex.getMessage();
+        }
+    }
+
     @PostMapping(value = "/{id}/delete")
     public String deleteDeck(@PathVariable Long id) {
         this.deckService.deleteById(id);

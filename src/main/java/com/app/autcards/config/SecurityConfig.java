@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/templates/**", "/static/**",
                         "/login", "/webjars/**", "/js/**", "/css/**", "/vendor/**",
-                        "/fonts/**","/images/**", "/resources/").permitAll()
+                        "/fonts/**","/images/**", "/resources/", "src/main/resources/static/images/logo.png").permitAll()
                 .antMatchers("/decks").hasRole("USER")
                 .antMatchers("/logout").authenticated()
                 .anyRequest().authenticated()

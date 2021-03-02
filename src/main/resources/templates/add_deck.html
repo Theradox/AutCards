@@ -53,6 +53,7 @@
                    id="name"
                    name="name"
                    th:field="*{name}"
+                   th:value="${deck.getName()}"
                    required
                    placeholder="Enter deck name">
         </div>
@@ -62,6 +63,7 @@
                    id="description"
                    name="description"
                    th:field="*{description}"
+                   th:value="${deck.getDescription()}"
                    required
                    placeholder="Enter deck description">
         </div>
