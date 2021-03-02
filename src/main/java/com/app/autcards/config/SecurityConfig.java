@@ -27,8 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/templates/**", "/static/**",
                         "/login", "/webjars/**", "/js/**", "/css/**", "/vendor/**",
                         "/fonts/**","/images/**", "/resources/", "src/main/resources/static/images/logo.png").permitAll()
-                .antMatchers("/decks").hasRole("USER")
-                .antMatchers("/logout").authenticated()
+                .antMatchers("/logout", "/home").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()

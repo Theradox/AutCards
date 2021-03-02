@@ -42,7 +42,7 @@ public class Oauth2AuthenticationSuccessHandler implements AuthenticationSuccess
 
         userRepository.save(user);
         //TODO REDIRECT PATH
-        this.redirectStrategy.sendRedirect(httpServletRequest,httpServletResponse,"/decks");
+        this.redirectStrategy.sendRedirect(httpServletRequest,httpServletResponse,"/");
 
 
     }
