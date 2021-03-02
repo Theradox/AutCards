@@ -70,43 +70,35 @@
     <div class="card text-white mb-5 align-content-center justify-content-center mx-auto container-fluid"
          th:each="card: ${cards}" style="width: 60%; margin-top: 25px; background-color: #5784BA">
         <h3 class="card-header msg-question"  data-toggle="tooltip" title="Click on the question to reveal the answer" th:text="${card.getQuestion()}" style="cursor: pointer; padding-bottom: 30px; background-color: #5784BA"></h3>
-        <div class="card-body msg-answer" >
+        <div class="card-body msg-answer justify-content-center align-content-center mx-auto container-fluid" >
             <div th:text="${card.getAnswer()}" style="margin-bottom: 40px"></div>
 
 
-            <div class="d-flex justify-content-center">
-                <div >
-                    <form th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                          th:method="post">
-                        <button type="submit" class="btn btn-dark" style="background-color: #CCD4BF" data-toggle="tooltip" title="Postpone the card for 10 minutes"><i class="">Postpone 10mins</i></button>
-                    </form>
-                </div>
+                <form class="text-center" th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                      th:method="post">
+                    <button type="submit" class="btn btn-dark" style="margin-top:50px; background-color: #CCD4BF" data-toggle="tooltip"
+                            title="Postpone the card for 10 minutes"><i class="">Postpone 10mins</i></button>
+                </form>
 
-                <div >
-                    <form th:action="@{/decks/two-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                          th:method="post">
-                        <button type="submit" class="btn btn-dark" style="background-color: #E7CBA9" data-toggle="tooltip" title="Postpone the card for 1 hour"><i class="">Postpone 1 hour</i></button>
-                    </form>
-                </div>
+                <form class="text-center" th:action="@{/decks/two-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                      th:method="post">
+                    <button type="submit" class="btn btn-dark" style="margin-top:20px; background-color: #E7CBA9" data-toggle="tooltip"
+                            title="Postpone the card for 1 hour"><i class="">Postpone 1 hour</i></button>
+                </form>
 
-                <div >
-                    <form th:action="@{/decks/five-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                          th:method="post">
-                        <button type="submit" class="btn btn-dark" style="margin-right: 30px; background-color: #EEBAB2" data-toggle="tooltip" title="Postpone the card for 1 day"><i class="">Postpone 1 day</i></button>
-                    </form>
-                </div>
-                <div>
-                    <form th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}"
-                          th:method="delete">
-                        <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Delete the card">
-                            <i class="fa fa-trash"><span
-                                    style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Delete</span></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-
+                <form class="text-center" th:action="@{/decks/five-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                      th:method="post">
+                    <button type="submit" class="btn btn-dark" style="margin-top:20px; background-color: #EEBAB2"
+                            data-toggle="tooltip" title="Postpone the card for 1 day"><i class="">Postpone 1 day</i>
+                    </button>
+                </form>
+                <form class="text-center" th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}"
+                      th:method="delete">
+                    <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Delete the card">
+                        <i class="fa fa-trash"><span
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Delete</span></i>
+                    </button>
+                </form>
         </div>
 
     </div>
