@@ -79,7 +79,7 @@ public class CardServiceImpl implements CardService {
         var card1 = this.findById(id);
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
-        card1.setPostponeDate(LocalDateTime.now().plusDays(1));
+        card1.setPostponeDate(LocalDateTime.now().plusMinutes(10));
 
         return this.cardRepository.save(card1);
     }
@@ -89,7 +89,7 @@ public class CardServiceImpl implements CardService {
         var card1 = this.findById(id);
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
-        card1.setPostponeDate(LocalDateTime.now().plusDays(3));
+        card1.setPostponeDate(LocalDateTime.now().plusHours(1));
 
         return this.cardRepository.save(card1);
     }
@@ -99,7 +99,7 @@ public class CardServiceImpl implements CardService {
         var card1 = this.findById(id);
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
-        card1.setPostponeDate(LocalDateTime.now().plusDays(5));
+        card1.setPostponeDate(LocalDateTime.now().plusDays(1));
 
         return this.cardRepository.save(card1);
     }
