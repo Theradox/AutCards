@@ -70,7 +70,7 @@
     <div class="page-header">
         <h2 style="color: whitesmoke">Click on any of the following questions to reveal the answer</h2>
     </div>
-    <div class="text-left">
+    <div class="text-right">
         <form th:action="@{/decks/clear-all/{deckId}(deckId=${deck.getId()})}"
               th:method="post">
             <button type="submit" class="btn btn-success" data-toggle="tooltip" title="Revert all postponed cards"><i
