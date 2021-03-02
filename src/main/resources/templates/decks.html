@@ -81,19 +81,19 @@
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/add_cards(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Add cards"><i
-                            class="fa fa-edit"><span
+                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Add cards"><i
+                            class="fa fa-plus-square"><span
                             style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Add cards</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/editDeck(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Delete the deck">
-                        <i class="fa fa-trash"><span
+                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Edit the deck">
+                        <i class="fa fa-edit"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Edit</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
-                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Delete the deck">
+                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip" title="Delete the deck">
                         <i class="fa fa-trash"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Delete</span></i>
                     </button>
