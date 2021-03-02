@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <title>Add Deck</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <style>
+        body{
+            background-color: #B6D8F2;
+        }
+    </style>
 </head>
 <body>
-<h1>Add deck</h1>
-<div class="col-md-5">
+
+<div class="col-md-5" style="margin: auto; width: 50%">
+    <h1>Add deck</h1>
     <form th:action="@{/decks/save}"
           method="post"
           th:object="${deck}">
