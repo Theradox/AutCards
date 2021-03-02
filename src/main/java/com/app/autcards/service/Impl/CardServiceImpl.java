@@ -7,9 +7,12 @@ import com.app.autcards.repository.DeckRepository;
 import com.app.autcards.service.CardService;
 import com.app.autcards.service.DeckService;
 import lombok.AllArgsConstructor;
+import org.apache.tomcat.jni.Local;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +51,7 @@ public class CardServiceImpl implements CardService {
         var cards = deck.getCards();
         cards.add(card);
         deck.setCards(cards);
+        card.setPostponeDate(LocalDateTime.now());
         cardRepository.save(card);
         deckRepository.save(deck);
         return card;
@@ -58,6 +62,45 @@ public class CardServiceImpl implements CardService {
         var card1 = this.findById(id);
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
+        card1.setPostponeDate(LocalDateTime.now().plusDays(1));
+        return this.cardRepository.save(card1);
+    }
+    @Override
+    public void clearAll(Long deckId){
+        var deck = deckService.findById(deckId);
+        var cards = deck.getCards();
+        cards.forEach(card -> card.setPostponeDate(LocalDateTime.now()));
+        cardRepository.saveAll(cards);
+    }
+
+
+    @Override
+    public Card updateCardOneDay(Long id, Card card) {
+        var card1 = this.findById(id);
+        card1.setAnswer(card.getAnswer());
+        card1.setQuestion(card.getQuestion());
+        card1.setPostponeDate(LocalDateTime.now().plusDays(1));
+
+        return this.cardRepository.save(card1);
+    }
+
+    @Override
+    public Card updateCardTwoDay(Long id, Card card) {
+        var card1 = this.findById(id);
+        card1.setAnswer(card.getAnswer());
+        card1.setQuestion(card.getQuestion());
+        card1.setPostponeDate(LocalDateTime.now().plusDays(3));
+
+        return this.cardRepository.save(card1);
+    }
+
+    @Override
+    public Card updateCardFiveDay(Long id, Card card) {
+        var card1 = this.findById(id);
+        card1.setAnswer(card.getAnswer());
+        card1.setQuestion(card.getQuestion());
+        card1.setPostponeDate(LocalDateTime.now().plusDays(5));
+
         return this.cardRepository.save(card1);
     }
 
@@ -72,6 +115,16 @@ public class CardServiceImpl implements CardService {
         );
         this.deckRepository.save(deck);
         this.cardRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Card> findByPostponed(List<Card> cards) {
+        var cards2 = cards.stream()
+                .filter(card -> !card.getPostponeDate().isAfter(LocalDateTime.now()) || card.getPostponeDate().isEqual(LocalDateTime.now())
+                        || card.getPostponeDate() == null)
+                .collect(Collectors.toList());
+        System.out.println(cards2);
+        return cardRepository.saveAll(cards2);
     }
 
 }

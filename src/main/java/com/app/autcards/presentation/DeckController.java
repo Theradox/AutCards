@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -36,8 +37,8 @@ public class DeckController {
         try {
             Deck deck = this.deckService.findById(id);
             List<Card> cards = deck.getCards();
-
-            model.addAttribute("cards", cards);
+            var cards2 = cardService.findByPostponed(cards);
+            model.addAttribute("cards", cards2);
             model.addAttribute("deck", deck);
 
             return "cards";
@@ -76,6 +77,36 @@ public class DeckController {
     public String saveCard(@Valid Card card, @PathVariable Long deckId) {
         this.cardService.save(card, deckId);
         return "redirect:/decks/{deckId}/add_cards";
+    }
+
+    @PostMapping(value = "/one-day/{id}/{deckId}")
+    public String postponeDate(@PathVariable Long id, @PathVariable Long deckId) {
+        var card = cardService.findById(id);
+        this.cardService.updateCardOneDay(id, card);
+        return "redirect:/decks/{deckId}/open";
+    }
+
+
+    @PostMapping(value = "/two-day/{id}/{deckId}")
+    public String postponeTwoDate(@PathVariable Long id, @PathVariable Long deckId) {
+        var card = cardService.findById(id);
+        this.cardService.updateCardTwoDay(id, card);
+        return "redirect:/decks/{deckId}/open";
+    }
+
+
+    @PostMapping(value = "/five-day/{id}/{deckId}")
+    public String postponeFiveDate(@PathVariable Long id, @PathVariable Long deckId) {
+        var card = cardService.findById(id);
+        this.cardService.updateCardFiveDay(id, card);
+        return "redirect:/decks/{deckId}/open";
+    }
+
+
+    @PostMapping(value = "/clear-all/{deckId}")
+    public String clearAll(@PathVariable Long deckId) {
+        this.cardService.clearAll(deckId);
+        return "redirect:/decks/{deckId}/open";
     }
 
     @PostMapping(value = "/{id}/{deckId}/deleteCard")
