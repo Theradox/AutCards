@@ -2,7 +2,9 @@ package com.app.autcards.service;
 
 import com.app.autcards.model.Card;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public interface CardService {
 
     Card saveCard(Card card);
 
-    Card save(Card card, Long deckId);
+    Card save(Card card, Long deckId, MultipartFile image) throws IOException;
 
     Card updateCard(Long id, Card card);
 

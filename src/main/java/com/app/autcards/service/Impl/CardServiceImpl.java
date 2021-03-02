@@ -11,8 +11,11 @@ import org.apache.tomcat.jni.Local;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +48,12 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card save(Card card, Long deckId) {
+    public Card save(Card card, Long deckId, MultipartFile image) throws IOException {
+        if (image != null && !image.getName().isEmpty()) {
+            byte[] bytes = image.getBytes();
+            String base64Image = String.format("data:%s;base64,%s", image.getContentType(), Base64.getEncoder().encodeToString(bytes));
+            card.setImageBase64(base64Image);
+        }
         var deck = this.deckService.findById(deckId);
         var cards = deck.getCards();
         cards.add(card);
@@ -62,6 +70,7 @@ public class CardServiceImpl implements CardService {
         card1.setId(card.getId());
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
+        card1.setImageBase64(card.getImageBase64());
         card1.setPostponeDate(LocalDateTime.now());
         return cardRepository.save(card1);
     }

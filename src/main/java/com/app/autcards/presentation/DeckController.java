@@ -8,9 +8,12 @@ import com.app.autcards.service.Impl.MyUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -83,8 +86,19 @@ public class DeckController {
     }
 
     @PostMapping(value = "/{deckId}/saveCard")
-    public String saveCard(@Valid Card card, @PathVariable Long deckId) {
-        this.cardService.save(card, deckId);
+    public String saveCard(@Valid Card card,
+                           @PathVariable Long deckId,
+                           BindingResult bindingResult,
+                           @RequestParam MultipartFile image) {
+        if (bindingResult.hasErrors()) {
+
+            return "redirect:/decks/{deckid}/open";
+        }
+        try {
+            this.cardService.save(card, deckId, image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "redirect:/decks/{deckId}/add_cards";
     }
 
