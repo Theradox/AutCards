@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Cards</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -22,10 +27,12 @@
         .card-header msg-question {
             cursor: pointer;
         }
-        body{
+
+        body {
             background-color: #B6D8F2;
         }
-        button{
+
+        button {
             margin-right: 5px;
         }
     </style>
@@ -37,8 +44,10 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5784BA; margin-bottom: 10px">
-    <a class="navbar-brand" href="/"><img style="height: 40px" src="../static/images/logo.png" th:src="@{images/logo.png}" /></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/"><img style="height: 40px" src="../static/images/logo.png"
+                                          th:src="@{images/logo.png}"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -64,56 +73,70 @@
     <div class="text-left">
         <form th:action="@{/decks/clear-all/{deckId}(deckId=${deck.getId()})}"
               th:method="post">
-            <button type="submit" class="btn btn-success" data-toggle="tooltip" title="Revert all postponed cards"><i class="">Clear all postpones</i></button>
+            <button type="submit" class="btn btn-success" data-toggle="tooltip" title="Revert all postponed cards"><i
+                    class="">Clear all postpones</i></button>
         </form>
     </div>
     <div class="card text-white mb-5 align-content-center justify-content-center mx-auto container-fluid"
          th:each="card: ${cards}" style="width: 60%; margin-top: 25px; background-color: #5784BA">
-        <h3 class="card-header msg-question"  data-toggle="tooltip" title="Click on the question to reveal the answer" th:text="${card.getQuestion()}" style="cursor: pointer; padding-bottom: 30px; background-color: #5784BA"></h3>
-        <div class="card-body msg-answer justify-content-center align-content-center mx-auto container-fluid" >
+        <h3 class="card-header msg-question" data-toggle="tooltip" title="Click on the question to reveal the answer"
+            th:text="${card.getQuestion()}"
+            style="cursor: pointer; padding-bottom: 30px; background-color: #5784BA"></h3>
+        <div class="card-body msg-answer justify-content-center align-content-center mx-auto container-fluid">
             <div th:text="${card.getAnswer()}" style="margin-bottom: 40px"></div>
 
 
-                <form class="text-center" th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="post">
-                    <button type="submit" class="btn btn-dark" style="margin-top:50px; width: 130px; margin-bottom: -15px; background-color: #CCD4BF" data-toggle="tooltip"
-                            title="Postpone the card for 10 minutes"><i class="">Postpone 10mins</i></button>
-                </form>
+            <form class="text-center"
+                  th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                  th:method="post">
+                <button type="submit" class="btn btn-dark"
+                        style="margin-top:50px; width: 130px; margin-bottom: -15px; background-color: #CCD4BF"
+                        data-toggle="tooltip"
+                        title="Postpone the card for 10 minutes"><i class="">Postpone 10mins</i></button>
+            </form>
 
-                <form class="text-center" th:action="@{/decks/two-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="post">
-                    <button type="submit" class="btn btn-dark" style="margin-top:20px; width: 130px; background-color: #E7CBA9; margin-bottom: -15px" data-toggle="tooltip"
-                            title="Postpone the card for 1 hour"><i class="">Postpone 1 hour</i></button>
-                </form>
+            <form class="text-center"
+                  th:action="@{/decks/two-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                  th:method="post">
+                <button type="submit" class="btn btn-dark"
+                        style="margin-top:20px; width: 130px; background-color: #E7CBA9; margin-bottom: -15px"
+                        data-toggle="tooltip"
+                        title="Postpone the card for 1 hour"><i class="">Postpone 1 hour</i></button>
+            </form>
 
-                <form class="text-center" th:action="@{/decks/five-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="post">
-                    <button type="submit" class="btn btn-dark" style="margin-top:20px; width: 130px; background-color: #EEBAB2; margin-bottom: 10px"
-                            data-toggle="tooltip" title="Postpone the card for 1 day"><i class="">Postpone 1 day</i>
-                    </button>
-                </form>
-                <form class="text-center" th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="delete">
-                    <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Delete the card" style="width: 130px">
-                        <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif';margin-left: 7px">Delete</span></i>
-                    </button>
-                </form>
+            <form class="text-center"
+                  th:action="@{/decks/five-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                  th:method="post">
+                <button type="submit" class="btn btn-dark"
+                        style="margin-top:20px; width: 130px; background-color: #EEBAB2; margin-bottom: 10px"
+                        data-toggle="tooltip" title="Postpone the card for 1 day"><i class="">Postpone 1 day</i>
+                </button>
+            </form>
 
-                <form th:action="@{/decks/{id}/update-card(id=${card.getId()})}"
-                th:method="get">
-                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Edit card"><i
-                            class="fa fa-edit"><span
-                            style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Edit</span></i>
-                    </button>
-                </form>
+            <form class="text-right"
+                    th:action="@{/decks/{id}/update-card(id=${card.getId()})}"
+                    th:method="get">
+                <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Edit card" style="margin-bottom: 5px; width: 85px"><i
+                        class="fa fa-edit"><span
+                        style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Edit</span></i>
+                </button>
+            </form>
+            <form class="text-right"
+                  th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}"
+                  th:method="delete">
+                <button type="submit" class="btn btn-info" data-toggle="tooltip" title="Delete the card" style="width: 85px">
+                    <i class="fa fa-trash"><span
+                            style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif';">Delete</span></i>
+                </button>
+            </form>
         </div>
 
     </div>
 
 
-
-    <a href="/decks" class="btn btn-block btn-light" style="width: 60%; margin: auto" data-toggle="tooltip" title="Go back to your decks"><i class="fa fa-angle-double-left"></i><span style="margin-left: 7px">Back</span></a>
+    <a href="/decks" class="btn btn-block btn-light" style="width: 60%; margin: auto" data-toggle="tooltip"
+       title="Go back to your decks"><i class="fa fa-angle-double-left"></i><span
+            style="margin-left: 7px">Back</span></a>
 </div>
 
 </body>
