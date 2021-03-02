@@ -18,6 +18,8 @@ public class Deck {
 
     private String name;
 
+    private String description;
+
     @OneToMany
     private List<Card> cards;
 

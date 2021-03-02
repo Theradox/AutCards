@@ -65,12 +65,14 @@
         <thead>
         <tr>
             <th scope="col">Deck Name</th>
+            <th scope="col">Description</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="deck : ${decks}">
             <td th:text="${deck.getName()}"></td>
+            <td th:text="${deck.getDescription()}"></td>
             <td class="text-right">
                 <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
                     <button type="submit" class="btn btn-primary deckmanip" data-toggle="tooltip" title="Open the deck">
