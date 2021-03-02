@@ -46,6 +46,7 @@
 </nav>
 
 <div class="container mb-4">
+    Click on any of the following questions to reveal the answer
     <div class="text-right">
         <form th:action="@{/decks/clear-all/{deckId}(deckId=${deck.getId()})}"
               th:method="post">
@@ -55,36 +56,40 @@
     <div class="card text-white bg-primary mb-5 align-content-center justify-content-center mx-auto container-fluid "
          th:each="card: ${cards}" style="width: 60%; margin-top: 25px">
         <h3 class="card-header msg-question" th:text="${card.getQuestion()}" style="cursor: pointer"></h3>
-        <div class="card-body msg-answer" th:text="${card.getAnswer()}">
-        </div>
-        <div class="text-right">
-            <form th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}"
-                  th:method="delete" style="padding: 10px">
-                <button type="submit" class="btn btn-info"><i class="fa fa-trash">Delete</i></button>
-            </form>
-        </div>
-        <div class="d-flex justify-content-center">
-            <div >
-                <form th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="post">
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Postpone 10mins</i></button>
+        <div class="card-body msg-answer" >
+            <div th:text="${card.getAnswer()}"></div>
+
+            <div class="text-right">
+                <form th:action="@{/decks/{id}/{deckId}/deleteCard(id=${card.getId()}, deckId=${deck.getId()})}"
+                      th:method="delete" style="padding: 10px">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-trash">Delete</i></button>
                 </form>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div >
+                    <form th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                          th:method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Postpone 10mins</i></button>
+                    </form>
+                </div>
+
+                <div >
+                    <form th:action="@{/decks/two-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                          th:method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Postpone 1 hour</i></button>
+                    </form>
+                </div>
+
+                <div >
+                    <form th:action="@{/decks/five-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
+                          th:method="post">
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Postpone 1 day</i></button>
+                    </form>
+                </div>
             </div>
 
-            <div >
-                <form th:action="@{/decks/two-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="post">
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Postpone 1 hour</i></button>
-                </form>
-            </div>
-
-            <div >
-                <form th:action="@{/decks/five-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
-                      th:method="post">
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash">Postpone 1 day</i></button>
-                </form>
-            </div>
         </div>
+
     </div>
 
 
