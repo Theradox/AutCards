@@ -24,10 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/templates/**", "/static/**",
+                .antMatchers("/resources/**", "/templates/**", "/", "/static/**",
                         "/login", "/webjars/**", "/js/**", "/css/**", "/vendor/**",
                         "/fonts/**","/images/**", "/resources/", "src/main/resources/static/images/logo.png").permitAll()
-                .antMatchers("/logout", "/home").authenticated()
+                .antMatchers("/logout").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login()
