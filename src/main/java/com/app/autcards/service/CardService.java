@@ -13,7 +13,7 @@ public interface CardService {
 
     Card findById(Long id);
 
-    Card saveCard(String question, String answer);
+    Card saveCard(Card card);
 
     Card save(Card card, Long deckId);
 

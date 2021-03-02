@@ -40,8 +40,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card saveCard(String question, String answer) {
-        var card = new Card(question, answer);
+    public Card saveCard(Card card) {
         return this.cardRepository.save(card);
     }
 
@@ -60,10 +59,11 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card updateCard(Long id, Card card) {
         var card1 = this.findById(id);
+        card1.setId(card.getId());
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
-        card1.setPostponeDate(LocalDateTime.now().plusDays(1));
-        return this.cardRepository.save(card1);
+        card1.setPostponeDate(LocalDateTime.now());
+        return cardRepository.save(card1);
     }
     @Override
     public void clearAll(Long deckId){
