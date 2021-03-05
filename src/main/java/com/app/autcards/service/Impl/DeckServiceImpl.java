@@ -6,13 +6,11 @@ import com.app.autcards.model.user_details.MyAuthenticatedPrincipal;
 import com.app.autcards.repository.DeckRepository;
 import com.app.autcards.service.DeckService;
 import lombok.AllArgsConstructor;
-import org.springframework.expression.ExpressionException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -52,10 +50,12 @@ public class DeckServiceImpl implements DeckService {
     }
 
     @Override
-    public Deck updateName(Long id, String name) {
-        Deck deck = this.findById(id);
-        deck.setName(name);
-        return this.deckRepository.save(deck);
+    public Deck updateDeck(Long id, Deck deck) {
+        Deck deck1 = this.findById(id);
+        deck1.setName(deck.getName());
+        deck1.setDescription(deck.getDescription());
+        deck1.setCards(deck.getCards());
+        return this.deckRepository.save(deck1);
     }
 
     @Override

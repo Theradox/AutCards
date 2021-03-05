@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -57,16 +56,16 @@ public class DeckController {
         return "redirect:/decks";
     }
 
-    @GetMapping(value = "/{id}/editDeck")
-    public String editDeckPage(Model model, @PathVariable Long id) {
-        try {
-            var deck = this.deckService.findById(id);
-            model.addAttribute("deck", deck);
-            return "add_deck";
-        } catch (RuntimeException ex) {
-            return "redirect:/decks?error=" + ex.getMessage();
-        }
-    }
+//    @GetMapping(value = "/{id}/editDeck")
+//    public String editDeckPage(Model model, @PathVariable Long id) {
+//        try {
+//            var deck = this.deckService.findById(id);
+//            model.addAttribute("deck", deck);
+//            return "deck_edit";
+//        } catch (RuntimeException ex) {
+//            return "redirect:/decks?error=" + ex.getMessage();
+//        }
+//    }
 
     @PostMapping(value = "/{id}/delete")
     public String deleteDeck(@PathVariable Long id) {
@@ -86,6 +85,19 @@ public class DeckController {
     public String saveCard(@Valid Card card, @PathVariable Long deckId) {
         this.cardService.save(card, deckId);
         return "redirect:/decks/{deckId}/add_cards";
+    }
+
+    @GetMapping(value = "/{id}/update-deck")
+    public String updateDeck(Model model, @PathVariable Long id) {
+        var deck = deckService.findById(id);
+        model.addAttribute("deck", deck);
+        return "deck_edit";
+    }
+
+    @PostMapping(value = "/editDeck/{id}")
+    public String updateDeck(@PathVariable Long id, Deck deck) {
+        deckService.updateDeck(id, deck);
+        return "redirect:/decks";
     }
 
     @GetMapping(value = "/{id}/update-card")

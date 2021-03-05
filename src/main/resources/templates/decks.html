@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Decks</title>
+    <title>Шпилови</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
@@ -48,13 +48,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/">Дома</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/decks">Decks</a>
+                <a class="nav-link" href="/decks">Шпилови</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a class="nav-link" href="/logout">Одлогирање</a>
             </li>
         </ul>
     </div>
@@ -64,8 +64,8 @@
     <table class="table table-striped table-light">
         <thead>
         <tr>
-            <th scope="col">Deck Name</th>
-            <th scope="col">Description</th>
+            <th scope="col">Име на шпилот</th>
+            <th scope="col">Опис</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -75,27 +75,27 @@
             <td th:text="${deck.getDescription()}"></td>
             <td class="text-right">
                 <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
-                    <button type="submit" style="background-color: #5784BA" class="btn btn-primary deckmanip" data-toggle="tooltip" title="Open the deck">
+                    <button type="submit" style="background-color: #5784BA" class="btn btn-primary deckmanip" data-toggle="tooltip" title="Отвори го шпилот">
                         <i class="fa fa-table"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Open</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Отвори</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/add_cards(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Add cards"><i
+                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Додади картички"><i
                             class="fa fa-plus-square"><span
-                            style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Add cards</span></i>
+                            style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Додади картички</span></i>
                     </button>
                 </form>
-                <form th:action="@{/decks/{id}/editDeck(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Edit the deck">
+                <form th:action="@{/decks/{id}/update-deck(id=${deck.getId()})}">
+                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Промени го шпилот">
                         <i class="fa fa-edit"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Edit</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Промени</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
-                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip" title="Delete the deck" style="background-color: #be4f62">
+                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip" title="Избриши го шпилот" style="background-color: #be4f62">
                         <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Delete</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Избриши</span></i>
                     </button>
                 </form>
 
@@ -103,8 +103,7 @@
         </tr>
         </tbody>
     </table>
-    <a href="/decks/add_deck" class="btn btn-block btn-light" data-toggle="tooltip" title="Click here to add new deck">Add
-        new deck</a>
+    <a href="/decks/add_deck" class="btn btn-block btn-light" data-toggle="tooltip" title="Кликни тука да додадеш нов шпил">Додади нов шпил</a>
 </div>
 </body>
 </html>
