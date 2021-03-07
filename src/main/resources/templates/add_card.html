@@ -62,7 +62,8 @@
                    name="question"
                    th:field="*{question}"
                    required
-                   placeholder="Внеси прашање">
+                   placeholder="Внеси прашање"
+                   maxlength="200">
         </div>
         <div class="form-group">
             <textarea class="form-control"
@@ -71,7 +72,9 @@
                       name="answer"
                       th:field="*{answer}"
                       required
-                      placeholder="Внеси одговор">>
+                      placeholder="Внеси одговор"
+                      maxlength="254"
+            >>
             </textarea>
         </div>
 

@@ -55,7 +55,9 @@
                    th:field="*{name}"
                    th:value="${deck.getName()}"
                    required
-                   placeholder="Внеси име на шпилот">
+                   placeholder="Внеси име на шпилот"
+                   maxlength="50"
+            >
         </div>
         <div class="form-group">
             <input type="text"
@@ -65,7 +67,9 @@
                    th:field="*{description}"
                    th:value="${deck.getDescription()}"
                    required
-                   placeholder="Внеси опис на шпилот">
+                   placeholder="Внеси опис на шпилот"
+                   maxlength="50"
+            >
         </div>
         <button type="submit" class="btn btn-primary">Поднеси</button>
         <a href="/decks" class="btn btn-light" style="width: 100px" data-toggle="tooltip" title="Врати се кај шпиловите"><i class="fa fa-angle-double-left"></i><span style="margin-left: 7px">Назад</span></a>
