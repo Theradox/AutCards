@@ -18,6 +18,9 @@
         .deckmanip {
             width: 130px;
             margin-bottom: 5px;
+            height: 50px;
+            margin-left: 4px;
+            position: relative;
         }
 
         i {
@@ -26,6 +29,17 @@
         body {
             background-color: #B6D8F2;
 
+        }
+        .card{
+            background-color: #5784BA;
+            width: 290px;
+            height:280px;
+            display: inline-block;
+            float:left;
+            padding: 10px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            margin-right: 5px
         }
 
     </style>
@@ -61,49 +75,88 @@
 </nav>
 
 <div class="container mb-4">
-    <table class="table table-striped table-light" style="width: 80%; margin: auto; margin-bottom: 10px">
-        <thead>
-        <tr>
-            <th scope="col">Име на шпилот</th>
-            <th scope="col">Опис</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="deck : ${decks}">
-            <td th:text="${deck.getName()}"></td>
-            <td th:text="${deck.getDescription()}"></td>
-            <td class="text-right">
+
+    <div th:each="deck: ${decks}" style="width: 80%; margin: auto">
+        <div class="card">
+            <b th:text="${deck.getName()}" style="color: white; font-size: large"></b>
+            <p th:text="${deck.getDescription()}" style="color: white"></p>
+            <div style="width: 100%">
                 <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
-                    <button type="submit" style="background-color: #5784BA" class="btn btn-primary deckmanip" data-toggle="tooltip" title="Отвори го шпилот">
+                    <button type="submit" style="float: left" class="btn btn-primary deckmanip" data-toggle="tooltip"
+                            title="Отвори го шпилот">
                         <i class="fa fa-table"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Отвори</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/add_cards(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Додади картички"><i
-                            class="fa fa-plus-square"><span
-                            style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Додади картички</span></i>
+                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Додади картички">
+                        <i
+                                class="fa fa-plus-square"><span
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Додади картички</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/update-deck(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Промени го шпилот">
+                    <button type="submit" style="float: left;" class="btn btn-success deckmanip" data-toggle="tooltip"
+                            title="Промени го шпилот">
                         <i class="fa fa-edit"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Промени</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
-                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip" title="Избриши го шпилот" style="background-color: #be4f62">
+                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip"
+                            title="Избриши го шпилот" style="background-color: #be4f62">
                         <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Избриши</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Избриши</span></i>
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+    <a href="/decks/add_deck" class="btn btn-block btn-light" data-toggle="tooltip"
+       style="width: 100%; margin: auto; float: left" title="Кликни тука да додадеш нов шпил">Додади нов шпил</a>
 
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="/decks/add_deck" class="btn btn-block btn-light" data-toggle="tooltip" style="width: 80%; margin: auto" title="Кликни тука да додадеш нов шпил">Додади нов шпил</a>
+    <!--    <table class="table table-striped table-light" style="width: 80%; margin: auto; margin-bottom: 10px">-->
+    <!--        <thead>-->
+    <!--        <tr>-->
+    <!--            <th scope="col">Име на шпилот</th>-->
+    <!--            <th scope="col">Опис</th>-->
+    <!--            <th scope="col"></th>-->
+    <!--        </tr>-->
+    <!--        </thead>-->
+    <!--        <tbody>-->
+    <!--        <tr th:each="deck : ${decks}">-->
+    <!--            <td th:text="${deck.getName()}"></td>-->
+    <!--            <td th:text="${deck.getDescription()}"></td>-->
+    <!--            <td class="text-right">-->
+    <!--                <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">-->
+    <!--                    <button type="submit" style="background-color: #5784BA" class="btn btn-primary deckmanip" data-toggle="tooltip" title="Отвори го шпилот">-->
+    <!--                        <i class="fa fa-table"><span-->
+    <!--                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Отвори</span></i>-->
+    <!--                    </button>-->
+    <!--                </form>-->
+    <!--                <form th:action="@{/decks/{id}/add_cards(id=${deck.getId()})}">-->
+    <!--                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Додади картички"><i-->
+    <!--                            class="fa fa-plus-square"><span-->
+    <!--                            style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Додади картички</span></i>-->
+    <!--                    </button>-->
+    <!--                </form>-->
+    <!--                <form th:action="@{/decks/{id}/update-deck(id=${deck.getId()})}">-->
+    <!--                    <button type="submit" class="btn btn-success deckmanip" data-toggle="tooltip" title="Промени го шпилот">-->
+    <!--                        <i class="fa fa-edit"><span-->
+    <!--                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Промени</span></i>-->
+    <!--                    </button>-->
+    <!--                </form>-->
+    <!--                <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">-->
+    <!--                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip" title="Избриши го шпилот" style="background-color: #be4f62">-->
+    <!--                        <i class="fa fa-trash"><span-->
+    <!--                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Избриши</span></i>-->
+    <!--                    </button>-->
+    <!--                </form>-->
+
+    <!--            </td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
 </div>
 </body>
 </html>
