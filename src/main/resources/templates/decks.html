@@ -75,11 +75,12 @@
 </nav>
 
 <div class="container mb-4">
-
     <div th:each="deck: ${decks}" style="width: 80%; margin: auto">
         <div class="card">
-            <b th:text="${deck.getName()}" style="color: white; font-size: large"></b>
-            <p th:text="${deck.getDescription()}" style="color: white"></p>
+            <div style="height:100px">
+                <b th:text="${deck.getName()}" style="color: white; font-size: large"></b>
+                <p th:text="${deck.getDescription()}" style="color: white"></p>
+            </div>
             <div style="width: 100%">
                 <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
                     <button type="submit" style="float: left" class="btn btn-primary deckmanip" data-toggle="tooltip"
