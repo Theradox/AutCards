@@ -92,28 +92,19 @@
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Отвори</span></i>
                     </button>
                 </form>
-
-<!--                <form th:action="@{/decks/public-decks/save-to-decks/{id}(id=${deck.getId()})}">-->
-<!--                    <button type="submit" style="float: left" class="btn btn-primary deckmanip" data-toggle="tooltip"-->
-<!--                            title="Отвори го шпилот">-->
-<!--                        <i class="fa fa-table"><span-->
-<!--                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Зачувај го во вашите шпилови</span></i>-->
-<!--                    </button>-->
-<!--                </form>-->
-
                 <form
                         th:action="@{/decks/public-decks/save-to-decks/{id}(id=${deck.getId()})}" th:method="post">
                     <button type="submit" class="btn btn-warning deckmanip" data-toggle="tooltip"
                             title="Избриши го шпилот" style="background-color: #be4f62">
                         <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Зачувај го во вашите шпилови</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Зачувај шпил</span></i>
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    <a href="/decks" class="btn btn-light" style="width: 100px" data-toggle="tooltip"
-       title="Назад кон вашите шпилови"><i class="fa fa-angle-double-left"></i><span
+    <a href="/decks" class="btn btn-block btn-light" style="width: 60%; margin: auto" data-toggle="tooltip"
+       title="Врати се кај своите картички"><i class="fa fa-angle-double-left"></i><span
             style="margin-left: 7px">Назад</span></a>
 </div>
 </body>
