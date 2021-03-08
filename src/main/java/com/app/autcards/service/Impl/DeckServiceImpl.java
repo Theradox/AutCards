@@ -38,7 +38,7 @@ public class DeckServiceImpl implements DeckService {
     public List<Deck> findByNameContaining(String name) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         MyAuthenticatedPrincipal principal = (MyAuthenticatedPrincipal) auth.getPrincipal();
-        return this.deckRepository.findByNameContainingAndAndUser_Email(name, principal.getEmail());
+        return this.deckRepository.findByNameContainingAndAndUserEmail(name, principal.getEmail());
     }
 
 
