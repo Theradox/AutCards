@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+
 import static com.app.autcards.model.enumerations.DeckOwner.*;
 
 @Service
@@ -75,13 +76,16 @@ public class DeckServiceImpl implements DeckService {
         var auth = SecurityContextHolder.getContext().getAuthentication();
         var principal = (MyAuthenticatedPrincipal) auth.getPrincipal();
         var user = this.myUserService.findById(principal.getEmail());
-
-        var deck1 = new Deck();
-        deck1.setOwner(PRIVATE);
-        deck1.setName(deck.getName());
-        deck1.setDescription(deck.getDescription());
-        deck1.setUser(user);
-        return this.deckRepository.save(deck1);
+        // TODO if it already exists in our decks, set it to private
+        if (!deckRepository.existsByNameContainsAndDescriptionContainsAndUserEmail(deck.getName(), deck.getDescription(), user.getEmail())) {
+            var deck1 = new Deck();
+            deck1.setOwner(PRIVATE);
+            deck1.setName(deck.getName());
+            deck1.setDescription(deck.getDescription());
+            deck1.setUser(user);
+            return this.deckRepository.save(deck1);
+        }
+        return deck;
     }
 
 
