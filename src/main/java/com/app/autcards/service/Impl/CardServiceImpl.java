@@ -65,12 +65,17 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card updateCard(Long id, Card card) {
+    public Card updateCard(Card card, Long id, MultipartFile image) throws IOException  {
         var card1 = this.findById(id);
+        if (image != null && !image.getName().isEmpty()) {
+            byte[] bytes = image.getBytes();
+            String base64Image = String.format("data:%s;base64,%s", image.getContentType(), Base64.getEncoder().encodeToString(bytes));
+            card1.setImageBase64(base64Image);
+        }
         card1.setId(card.getId());
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
-        card1.setImageBase64(card.getImageBase64());
+//        card1.setImageBase64(card.getImageBase64());
         card1.setPostponeDate(LocalDateTime.now());
         return cardRepository.save(card1);
     }

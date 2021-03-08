@@ -167,8 +167,9 @@ public class DeckController {
     }
 
     @PostMapping(value = "/edit/{id}")
-    public String updateCard(@PathVariable Long id, Card card) {
-        cardService.updateCard(id, card);
+    public String updateCard(@PathVariable Long id, Card card, BindingResult bindingResult,
+                             @RequestParam MultipartFile image) throws IOException {
+        cardService.updateCard(card, id, image);
         return "redirect:/decks";
     }
 
