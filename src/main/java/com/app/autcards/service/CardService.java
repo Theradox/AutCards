@@ -18,8 +18,7 @@ public interface CardService {
     Card saveCard(Card card);
 
     Card save(Card card, Long deckId, MultipartFile image) throws IOException;
-
-    Card updateCard(Long id, Card card);
+    Card updateCard(Card card, Long deckId, MultipartFile image) throws IOException;
 
     void deleteById(Long id, Long deckId);
 
