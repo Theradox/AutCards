@@ -30,12 +30,13 @@
             background-color: #B6D8F2;
 
         }
-        .card{
+
+        .card {
             background-color: #5784BA;
             width: 290px;
-            height:280px;
+            height: 280px;
             display: inline-block;
-            float:left;
+            float: left;
             padding: 10px;
             border-radius: 15px;
             margin-bottom: 20px;
@@ -68,7 +69,8 @@
                 <a class="nav-link" href="/decks">Шпилови</a>
             </li>
             <li>
-                <a class="nav-link" href="/decks/public-decks" data-toggle="tooltip" title="Кликни тука да се пренасочиш кон јавните шпилови">Јавни шпилови</a>
+                <a class="nav-link" href="/decks/public-decks" data-toggle="tooltip"
+                   title="Кликни тука да се пренасочиш кон јавните шпилови">Јавни шпилови</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Одлогирање</a>
@@ -81,8 +83,15 @@
                            placeholder="Пребарување"
                            maxlength="50"
                     >
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">Побарај</button>
+                    <button class="btn btn-success my-2 my-sm-0" type="submit" style="margin-right: 5px">Побарај
+                    </button>
                 </form>
+            </li>
+            <li>
+                <form method="post" th:action="@{/decks/clearSearch}">
+                    <button class="btn btn-info" type="submit">Исчисти пребарување</button>
+                </form>
+
             </li>
         </ul>
     </div>
@@ -126,17 +135,17 @@
                 </form>
 
                 <form th:if="${deck.getOwner().toString().equals('PRIVATE')}"
-                        th:action="@{/decks/save-to-public/{id}(id=${deck.getId()})}" th:method="post">
+                      th:action="@{/decks/save-to-public/{id}(id=${deck.getId()})}" th:method="post">
                     <button type="submit" class="btn btn-outline-warning deckmanip" data-toggle="tooltip"
-                            title="Избриши го шпилот" >
+                            title="Избриши го шпилот">
                         <i class="fa fa-trash"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Save to public</span></i>
                     </button>
                 </form>
-                <form   th:if="${deck.getOwner().toString().equals('PUBLIC')}"
-                        th:action="@{/decks/public-decks/save-to-private/{id}(id=${deck.getId()})}" th:method="post">
+                <form th:if="${deck.getOwner().toString().equals('PUBLIC')}"
+                      th:action="@{/decks/public-decks/save-to-private/{id}(id=${deck.getId()})}" th:method="post">
                     <button type="submit" class="btn btn-outline-warning deckmanip" data-toggle="tooltip"
-                            title="Избриши го шпилот" >
+                            title="Избриши го шпилот">
                         <i class="fa fa-trash"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Remove from public</span></i>
                     </button>
@@ -146,7 +155,6 @@
     </div>
     <a href="/decks/add_deck" class="btn btn-block btn-light" data-toggle="tooltip"
        style="width: 100%; margin: auto; float: left" title="Кликни тука да додадеш нов шпил">Додади нов шпил</a>
-
 
 
     <!--    <table class="table table-striped table-light" style="width: 80%; margin: auto; margin-bottom: 10px">-->

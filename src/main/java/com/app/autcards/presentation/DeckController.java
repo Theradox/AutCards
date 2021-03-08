@@ -58,6 +58,11 @@ public class DeckController {
         return "redirect:/decks";
     }
 
+    @PostMapping(value = "/clearSearch")
+    public String clearSearch() {
+        return "redirect:/decks";
+    }
+
     @PostMapping(value = "/public-decks/save-to-private/{id}")
     public String saveToPrivateDeck(@PathVariable Long id) {
         this.deckService.saveToPrivateDeck(id);
