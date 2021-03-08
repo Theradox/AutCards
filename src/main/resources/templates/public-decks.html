@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Шпилови</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .deckmanip {
+            width: 130px;
+            margin-bottom: 5px;
+            height: 50px;
+            margin-left: 3px;
+            position: relative;
+        }
+
+        i {
+        }
+
+        body {
+            background-color: #B6D8F2;
+
+        }
+        .card{
+            background-color: #5784BA;
+            width: 290px;
+            height:280px;
+            display: inline-block;
+            float:left;
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            margin-right: 5px
+        }
+
+    </style>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5784BA; margin-bottom: 50px">
+    <a class="navbar-brand" href="/"><img style="height: 40px" src="../static/images/logo.png"
+                                          th:src="@{images/logo.png}"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="/">Дома</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/decks">Шпилови</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Одлогирање</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mb-4">
+    <div class="page-header">
+        <h2 style="color: white; font-weight: bold">Јавно споделени шпилови</h2>
+    </div>
+    <div th:each="deck: ${decks}" style="width: 80%; margin: auto">
+        <div class="card">
+            <div style="height:100px">
+                <b th:text="${deck.getName()}" style="color: white; font-size: large"></b>
+                <p th:text="${deck.getDescription()}" style="color: white"></p>
+            </div>
+            <div style="width: 100%">
+                <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
+                    <button type="submit" style="float: left" class="btn btn-primary deckmanip" data-toggle="tooltip"
+                            title="Отвори го шпилот">
+                        <i class="fa fa-table"><span
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Отвори</span></i>
+                    </button>
+                </form>
+
+<!--                <form th:action="@{/decks/public-decks/save-to-decks/{id}(id=${deck.getId()})}">-->
+<!--                    <button type="submit" style="float: left" class="btn btn-primary deckmanip" data-toggle="tooltip"-->
+<!--                            title="Отвори го шпилот">-->
+<!--                        <i class="fa fa-table"><span-->
+<!--                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Зачувај го во вашите шпилови</span></i>-->
+<!--                    </button>-->
+<!--                </form>-->
+
+                <form
+                        th:action="@{/decks/public-decks/save-to-decks/{id}(id=${deck.getId()})}" th:method="post">
+                    <button type="submit" class="btn btn-warning deckmanip" data-toggle="tooltip"
+                            title="Избриши го шпилот" style="background-color: #be4f62">
+                        <i class="fa fa-trash"><span
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Зачувај го во вашите шпилови</span></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="/decks" class="btn btn-light" style="width: 100px" data-toggle="tooltip"
+       title="Назад кон вашите шпилови"><i class="fa fa-angle-double-left"></i><span
+            style="margin-left: 7px">Назад</span></a>
+</div>
+</body>
+</html>

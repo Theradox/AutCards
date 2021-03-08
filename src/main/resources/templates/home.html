@@ -42,12 +42,17 @@
         </ul>
     </div>
 </nav>
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">AutCards</h1>
+        <h1>Добредојде, </h1>
+        <h1 th:text="${#authentication.principal.attributes.given_name}"></h1>
         <p class="lead">Флеш кардс апликација за личности со аутизам</p>
-        <a href="/login" sec:authorize="isAnonymous()" class="btn btn-light" style="background-color: #5784BA; color: white">Морате да се логирате за да ја користите апликацијата</a>
-        <a href="/decks" sec:authorize="isAuthenticated()" class="btn btn-light" style="background-color: #5784BA; color: white">Продолжи до шпиловите</a>
+        <a href="/login" sec:authorize="isAnonymous()" class="btn btn-light"
+           style="background-color: #5784BA; color: white">Морате да се логирате за да ја користите апликацијата</a>
+        <a href="/decks" sec:authorize="isAuthenticated()" class="btn btn-light"
+           style="background-color: #5784BA; color: white">Продолжи до шпиловите</a>
     </div>
 
 </div>

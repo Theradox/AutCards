@@ -28,6 +28,32 @@ public class DeckController {
         return "decks";
     }
 
+    @GetMapping(value = "/public-decks")
+    public String publicDecks(Model model) {
+        List<Deck> decks = this.deckService.findAll();
+        model.addAttribute("decks", decks);
+        return "public-decks";
+    }
+
+    @PostMapping(value = "/save-to-public/{id}")
+    public String saveToPublicDeck(@PathVariable Long id) {
+        this.deckService.saveToPublicDeck(id);
+        return "redirect:/decks";
+    }
+
+    @PostMapping(value = "/public-decks/save-to-private/{id}")
+    public String saveToPrivateDeck(@PathVariable Long id) {
+        this.deckService.saveToPrivateDeck(id);
+        return "redirect:/decks";
+    }
+
+    //    public-decks/save-to-decks/{id}
+    @PostMapping(value = "/public-decks/save-to-decks/{id}")
+    public String saveToDecks(@PathVariable Long id) {
+        this.deckService.saveToDecks(id);
+        return "redirect:/decks";
+    }
+
     @GetMapping(value = "/{id}/open")
     public String openCards(Model model, @PathVariable Long id) {
         try {

@@ -9,6 +9,9 @@ public interface DeckService {
     List<Deck> findAllByUser();
     Deck findById(Long id);
     Deck saveDeck (Deck deck);
+    Deck saveToPublicDeck (Long id);
+    Deck saveToPrivateDeck(Long id);
+    Deck saveToDecks(Long id);
     Deck updateDeck(Long id, Deck deck);
     void deleteById(Long id);
 

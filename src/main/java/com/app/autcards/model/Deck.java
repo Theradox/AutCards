@@ -1,5 +1,7 @@
 package com.app.autcards.model;
 
+import com.app.autcards.model.enumerations.DeckOwner;
+import com.app.autcards.model.enumerations.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +28,7 @@ public class Deck {
     @ManyToOne
     private OauthUser user;
 
+    @Enumerated(EnumType.STRING)
+    private DeckOwner owner;
+
 }
-
-
-//TODO GET THE CURRENT LOGGED IN USER AND SHOW INFO ABOUT HIM
-// TODO UPDATE LOGIN PAGE AND PERMISSIONS
-//
