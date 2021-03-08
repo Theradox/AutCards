@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml"><head>
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8">
-    <title>Промена на картичка</title>
+    <title>Промена на шпил</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -14,6 +15,7 @@
             background-color: #B6D8F2;
         }
         input{
+            margin-bottom: 50px;
             margin-top: 50px;
         }
     </style>
@@ -28,52 +30,49 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-                <a class="nav-link" href="/">Дома</a>
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/decks">Шпилови</a>
+                <a class="nav-link" href="/decks">Decks</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Одлогирање</a>
+                <a class="nav-link" href="/logout">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
 <div class="col-md-5" style="margin: auto; width: 50%">
-    <input type="text" hidden="hidden" name="id" th:value="${card.getId()}">
-    <h1>Промени картичка</h1>
-    <form th:action="@{/decks/edit/{id}(id=${card.getId()})}"
+    <h1>Промени шпил</h1>
+    <form th:action="@{/decks/editDeck/{id}(id=${deck.getId()})}"
           method="post"
-          enctype="multipart/form-data"
-          th:object="${card}">
-
+          th:object="${deck}">
+        <input type="text" hidden="hidden" name="id" th:value="${deck.getId()}">
         <div class="form-group">
             <input type="text"
                    class="form-control"
-                   id="question"
-                   name="question"
-                   th:field="*{question}"
+                   id="name"
+                   name="name"
+                   th:field="*{name}"
+                   th:value="${deck.getName()}"
                    required
-                   placeholder="Внеси прашање"
-                   maxlength="200"
+                   placeholder="Внеси име на шпилот"
+                   maxlength="50"
             >
         </div>
         <div class="form-group">
-            <textarea class="form-control"
-                      rows="7"
-                      id="answer"
-                      name="answer"
-                      th:field="*{answer}"
-                      required
-                      placeholder="Внеси одговор"
-                      maxlength="254">>
-            </textarea>
-        </div>
-        <div class="form-group">
-            <input name="image" id="image" class="form-control" type="file"/>
+            <input type="text"
+                   class="form-control"
+                   id="description"
+                   name="description"
+                   th:field="*{description}"
+                   th:value="${deck.getDescription()}"
+                   required
+                   placeholder="Внеси опис на шпилот"
+                   maxlength="50"
+            >
         </div>
         <button type="submit" class="btn btn-primary">Поднеси</button>
-        <a href="/decks" class="btn btn-light" style="width: 100px" data-toggle="tooltip" title="Врати се кај своите шпилови"><i class="fa fa-angle-double-left"></i><span style="margin-left: 7px">Назад</span></a>
+        <a href="/decks" class="btn btn-light" style="width: 100px" data-toggle="tooltip" title="Врати се кај шпиловите"><i class="fa fa-angle-double-left"></i><span style="margin-left: 7px">Назад</span></a>
 
     </form>
 </div>

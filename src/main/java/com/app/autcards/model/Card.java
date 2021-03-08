@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +23,8 @@ public class Card {
     private String question;
 
     @NotNull
+    @Column(length = 1000)
+    @Size(min = 3, max = 1000)
     private String answer;
 
     @NotNull
