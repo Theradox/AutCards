@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Шпилови</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    <script crossorigin="anonymous"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
             integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
         .deckmanip {
@@ -53,10 +53,11 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5784BA; margin-bottom: 50px">
-    <a class="navbar-brand" href="/"><img style="height: 40px" src="../static/images/logo.png"
+    <a class="navbar-brand" href="/"><img src="../static/images/logo.png" style="height: 40px"
                                           th:src="@{images/logo.png}"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -69,83 +70,80 @@
                 <a class="nav-link" href="/decks">Шпилови</a>
             </li>
             <li>
-                <a class="nav-link" href="/decks/public-decks" data-toggle="tooltip"
+                <a class="nav-link" data-toggle="tooltip" href="/decks/public-decks"
                    title="Кликни тука да се пренасочиш кон јавните шпилови">Јавни шпилови</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Одлогирање</a>
             </li>
-            <li style="float: right">
-                <form class="form-inline" th:action="@{/decks/search}" method="post" th:object="${name}">
-                    <input class="form-control mr-sm-2" type="text" aria-label="Search"
-                           id="name"
-                           name="name"
-                           placeholder="Пребарување"
-                           maxlength="50"
-                    >
-                    <button class="btn btn-success my-2 my-sm-0" type="submit" style="margin-right: 5px">Побарај
-                    </button>
-                </form>
-            </li>
-            <li>
-                <form method="post" th:action="@{/decks/clearSearch}">
-                    <button class="btn btn-info" type="submit">Исчисти пребарување</button>
-                </form>
-
-            </li>
         </ul>
+        <form class="form-inline" method="post" th:action="@{/decks/search}" th:object="${name}">
+            <input aria-label="Search" class="form-control mr-sm-2" id="name"
+                   maxlength="50"
+                   name="name"
+                   placeholder="Пребарување"
+                   type="text"
+            >
+            <button class="btn btn-success my-2 my-sm-0" style="margin-right: 5px" type="submit">Побарај
+            </button>
+        </form>
+        <form method="post" th:action="@{/decks/clearSearch}">
+            <button class="btn btn-info" type="submit">Исчисти пребарување</button>
+        </form>
     </div>
 </nav>
 
 <div class="container mb-4">
-    <div th:each="deck: ${decks}" style="width: 80%; margin: auto">
+    <div style="width: 80%; margin: auto" th:each="deck: ${decks}">
         <div class="card">
             <div style="height:100px">
-                <b th:text="${deck.getName()}" style="color: white; font-size: large"></b>
-                <p th:text="${deck.getDescription()}" style="color: white"></p>
+                <b style="color: white; font-size: large" th:text="${deck.getName()}"></b>
+                <p style="color: white" th:text="${deck.getDescription()}"></p>
             </div>
             <div style="width: 100%">
                 <form th:action="@{/decks/{id}/open(id=${deck.getId()})}">
-                    <button type="submit" style="float: left" class="btn btn-primary deckmanip" data-toggle="tooltip"
-                            title="Отвори го шпилот">
+                    <button class="btn btn-primary deckmanip" data-toggle="tooltip" style="float: left"
+                            title="Отвори го шпилот"
+                            type="submit">
                         <i class="fa fa-table"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Отвори</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/add_cards(id=${deck.getId()})}">
-                    <button type="submit" class="btn btn-info deckmanip" data-toggle="tooltip" title="Додади картички">
+                    <button class="btn btn-info deckmanip" data-toggle="tooltip" title="Додади картички" type="submit">
                         <i
                                 class="fa fa-plus-square"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Додади картички</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/update-deck(id=${deck.getId()})}">
-                    <button type="submit" style="float: left;" class="btn btn-success deckmanip" data-toggle="tooltip"
-                            title="Промени го шпилот">
+                    <button class="btn btn-success deckmanip" data-toggle="tooltip" style="float: left;"
+                            title="Промени го шпилот"
+                            type="submit">
                         <i class="fa fa-edit"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Промени</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
-                    <button type="submit" class="btn btn-danger deckmanip" data-toggle="tooltip"
-                            title="Избриши го шпилот" style="background-color: #be4f62">
+                    <button class="btn btn-danger deckmanip" data-toggle="tooltip" style="background-color: #be4f62"
+                            title="Избриши го шпилот" type="submit">
                         <i class="fa fa-trash"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Избриши</span></i>
                     </button>
                 </form>
 
-                <form th:if="${deck.getOwner().toString().equals('PRIVATE')}"
-                      th:action="@{/decks/save-to-public/{id}(id=${deck.getId()})}" th:method="post">
-                    <button type="submit" class="btn btn-outline-warning deckmanip" data-toggle="tooltip"
-                            title="Избриши го шпилот">
+                <form th:action="@{/decks/save-to-public/{id}(id=${deck.getId()})}"
+                      th:if="${deck.getOwner().toString().equals('PRIVATE')}" th:method="post">
+                    <button class="btn btn-outline-warning deckmanip" data-toggle="tooltip" title="Избриши го шпилот"
+                            type="submit">
                         <i class="fa fa-trash"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Save to public</span></i>
                     </button>
                 </form>
-                <form th:if="${deck.getOwner().toString().equals('PUBLIC')}"
-                      th:action="@{/decks/public-decks/save-to-private/{id}(id=${deck.getId()})}" th:method="post">
-                    <button type="submit" class="btn btn-outline-warning deckmanip" data-toggle="tooltip"
-                            title="Избриши го шпилот">
+                <form th:action="@{/decks/public-decks/save-to-private/{id}(id=${deck.getId()})}"
+                      th:if="${deck.getOwner().toString().equals('PUBLIC')}" th:method="post">
+                    <button class="btn btn-outline-warning deckmanip" data-toggle="tooltip" title="Избриши го шпилот"
+                            type="submit">
                         <i class="fa fa-trash"><span
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Remove from public</span></i>
                     </button>
@@ -153,7 +151,7 @@
             </div>
         </div>
     </div>
-    <a href="/decks/add_deck" class="btn btn-block btn-light" data-toggle="tooltip"
+    <a class="btn btn-block btn-light" data-toggle="tooltip" href="/decks/add_deck"
        style="width: 100%; margin: auto; float: left" title="Кликни тука да додадеш нов шпил">Додади нов шпил</a>
 
 
