@@ -70,6 +70,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Одлогирање</a>
             </li>
+            <li style="float: right">
+                <form class="form-inline" th:action="@{/decks/search}" method="post" th:object="${name}">
+                    <input class="form-control mr-sm-2" type="text" aria-label="Search"
+                           id="name"
+                           name="name"
+                           placeholder="Пребарување"
+                           maxlength="50"
+                    >
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Побарај</button>
+                </form>
+            </li>
         </ul>
     </div>
 </nav>

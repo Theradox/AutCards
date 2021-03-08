@@ -2,6 +2,7 @@ package com.app.autcards.presentation;
 
 import com.app.autcards.model.Card;
 import com.app.autcards.model.Deck;
+import com.app.autcards.model.OauthUser;
 import com.app.autcards.service.CardService;
 import com.app.autcards.service.DeckService;
 import com.app.autcards.service.Impl.MyUserService;
@@ -28,6 +29,8 @@ public class DeckController {
     @GetMapping
     public String getDeckPage(Model model) {
         List<Deck> decks = this.deckService.findAllByUser();
+        String name = "";
+        model.addAttribute("name", name);
         model.addAttribute("decks", decks);
         return "decks";
     }
@@ -37,6 +40,16 @@ public class DeckController {
         List<Deck> decks = this.deckService.findAll();
         model.addAttribute("decks", decks);
         return "public-decks";
+    }
+
+    @PostMapping(value = "/search")
+    public String searchDecks(@Valid String name, Model model) {
+        //TODO da se implementira proverka dali spilot sto go vrakja
+        // e na logiraniot korisnik deka vaka gi vrakja site spilovi so toa ime
+        // bez razlika na korisnikot
+        List<Deck> decks = this.deckService.findByNameContaining(name);
+        model.addAttribute("decks", decks);
+        return "decks";
     }
 
     @PostMapping(value = "/save-to-public/{id}")

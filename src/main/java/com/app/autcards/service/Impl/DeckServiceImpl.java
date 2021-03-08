@@ -33,6 +33,11 @@ public class DeckServiceImpl implements DeckService {
         return this.deckRepository.findAllByUserEmail(principal.getEmail());
     }
 
+    @Override
+    public List<Deck> findByNameContaining(String name) {
+        return this.deckRepository.findByNameContaining(name);
+    }
+
 
     @Override
     public Deck findById(Long id) {
