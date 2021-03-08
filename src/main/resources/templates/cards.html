@@ -84,10 +84,8 @@
             style="cursor: pointer; padding-bottom: 30px; background-color: #5784BA"></h3>
         <div class="card-body msg-answer justify-content-center align-content-center mx-auto container-fluid">
             <div th:text="${card.getAnswer()}" style="margin-bottom: 40px"></div>
-            <div class="text-center">
-                <object th:data="${card.getImageBase64()}" type="application/pdf" height="300px" width="350px">
-                </object>
-            </div>
+            <img class="card-img-bottom" th:src="@{${card.getImageBase64()}}" alt="">
+
 
             <form class="text-center"
                   th:action="@{/decks/one-day/{id}/{deckId}(id=${card.getId()}, deckId=${deck.getId()})}"
