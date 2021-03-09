@@ -52,10 +52,11 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #5784BA; margin-bottom: 50px">
-    <a class="navbar-brand" href="/"><img style="height: 40px" src="../static/images/logo.png"
+    <a class="navbar-brand" href="/"><img src="../static/images/logo.png" style="height: 40px"
                                           th:src="@{images/logo.png}"/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -67,16 +68,33 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/decks">Шпилови</a>
             </li>
+            <li>
+                <a class="nav-link" data-toggle="tooltip" href="/decks/public-decks"
+                   title="Кликни тука да се пренасочиш кон јавните шпилови">Јавни шпилови</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Одлогирање</a>
             </li>
         </ul>
+        <form class="form-inline" method="post" th:action="@{/decks/searchPublic}" th:object="${name}">
+            <input aria-label="Search" class="form-control mr-sm-2" id="name"
+                   maxlength="50"
+                   name="name"
+                   placeholder="Пребарување"
+                   type="text"
+            >
+            <button class="btn btn-success my-2 my-sm-0" style="margin-right: 5px" type="submit">Побарај
+            </button>
+        </form>
+        <form method="post" th:action="@{/decks/clearPublicSearch}">
+            <button class="btn btn-info" type="submit">Исчисти пребарување</button>
+        </form>
     </div>
 </nav>
 
 <div class="container mb-4">
-    <div class="page-header" style="margin-bottom: 100px">
-        <h2 style="color: white; font-weight: bold">Јавно споделени шпилови</h2>
+    <div class="page-header">
+        <h2 style="color: white; font-weight: bold">Јавни шпилови</h2>
     </div>
     <div th:each="deck: ${decks}" style="width: 80%; margin: auto">
         <div class="card">

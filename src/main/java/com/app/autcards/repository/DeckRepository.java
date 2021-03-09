@@ -14,8 +14,8 @@ public interface DeckRepository extends JpaRepository<Deck, Long>{
     void deleteById(Long id);
     List<Deck> findAllByUserEmail(String email);
     List<Deck> findAllByOwnerIs(DeckOwner owner);
-    //TODO ke treba i ova kveri da se smeni da bara po logiraniot korisnik
-    List<Deck> findByNameContainingAndAndUserEmail(String name, String email);
+    List<Deck> findByNameContainingAndUserEmail(String name, String email);
+    List<Deck> findByNameContainingAndOwnerIs(String name, DeckOwner owner);
     List<Deck> findByNameContaining(String name);
     Boolean existsByNameContainsAndDescriptionContainsAndUserEmail(String name, String description, String email);
 }

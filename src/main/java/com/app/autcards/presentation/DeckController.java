@@ -44,12 +44,16 @@ public class DeckController {
 
     @PostMapping(value = "/search")
     public String searchDecks(@Valid String name, Model model) {
-        //TODO da se implementira proverka dali spilot sto go vrakja
-        // e na logiraniot korisnik deka vaka gi vrakja site spilovi so toa ime
-        // bez razlika na korisnikot
         List<Deck> decks = this.deckService.findByNameContaining(name);
         model.addAttribute("decks", decks);
         return "decks";
+    }
+
+    @PostMapping(value = "/searchPublic")
+    public String searchPublicDecks(@Valid String name, Model model) {
+        List<Deck> decks = this.deckService.findByNameContainingPublic(name);
+        model.addAttribute("decks", decks);
+        return "public-decks";
     }
 
     @PostMapping(value = "/save-to-public/{id}")
@@ -61,6 +65,11 @@ public class DeckController {
     @PostMapping(value = "/clearSearch")
     public String clearSearch() {
         return "redirect:/decks";
+    }
+
+    @PostMapping(value = "/clearPublicSearch")
+    public String clearPublicSearch() {
+        return "redirect:/decks/public-decks";
     }
 
     @PostMapping(value = "/public-decks/save-to-private/{id}")

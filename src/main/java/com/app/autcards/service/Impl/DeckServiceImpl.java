@@ -2,6 +2,7 @@ package com.app.autcards.service.Impl;
 
 import com.app.autcards.model.Deck;
 import com.app.autcards.model.OauthUser;
+import com.app.autcards.model.enumerations.DeckOwner;
 import com.app.autcards.model.user_details.MyAuthenticatedPrincipal;
 import com.app.autcards.repository.DeckRepository;
 import com.app.autcards.service.DeckService;
@@ -38,7 +39,12 @@ public class DeckServiceImpl implements DeckService {
     public List<Deck> findByNameContaining(String name) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         MyAuthenticatedPrincipal principal = (MyAuthenticatedPrincipal) auth.getPrincipal();
-        return this.deckRepository.findByNameContainingAndAndUserEmail(name, principal.getEmail());
+        return this.deckRepository.findByNameContainingAndUserEmail(name, principal.getEmail());
+    }
+
+    @Override
+    public List<Deck> findByNameContainingPublic(String name) {
+        return this.deckRepository.findByNameContainingAndOwnerIs(name, PUBLIC);
     }
 
 
