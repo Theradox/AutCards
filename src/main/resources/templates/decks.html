@@ -16,15 +16,16 @@
 
     <style>
         .deckmanip {
-            width: 130px;
+            width: 95px;
             margin-bottom: 5px;
-            height: 50px;
-            margin-left: 3px;
+            height: 45px;
+            margin-left: 10px;
             position: relative;
+            font-size: smaller;
+            left: 24px;
+            top: 15px;
         }
 
-        i {
-        }
 
         body {
             background-color: #B6D8F2;
@@ -124,20 +125,13 @@
                                 style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px">Промени</span></i>
                     </button>
                 </form>
-                <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
-                    <button class="btn btn-danger deckmanip" data-toggle="tooltip" style="background-color: #be4f62"
-                            title="Избриши го шпилот" type="submit">
-                        <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Избриши</span></i>
-                    </button>
-                </form>
 
                 <form th:action="@{/decks/save-to-public/{id}(id=${deck.getId()})}"
                       th:if="${deck.getOwner().toString().equals('PRIVATE')}" th:method="post">
                     <button class="btn btn-outline-warning deckmanip" data-toggle="tooltip" title="Избриши го шпилот"
                             type="submit">
                         <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Save to public</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Зачувај во јавни</span></i>
                     </button>
                 </form>
                 <form th:action="@{/decks/public-decks/save-to-private/{id}(id=${deck.getId()})}"
@@ -145,7 +139,14 @@
                     <button class="btn btn-outline-warning deckmanip" data-toggle="tooltip" title="Избриши го шпилот"
                             type="submit">
                         <i class="fa fa-trash"><span
-                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Remove from public</span></i>
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Избриши од јавни</span></i>
+                    </button>
+                </form>
+                <form th:action="@{/decks/{id}/delete(id=${deck.getId()})}" th:method="delete">
+                    <button class="btn btn-danger deckmanip" data-toggle="tooltip" style="background-color: #be4f62; width: 200px"
+                            title="Избриши го шпилот" type="submit">
+                        <i class="fa fa-trash"><span
+                                style="font-family: 'Segoe UI', 'Tahoma', 'sans-serif'; margin-left: 7px; clear: both; position: relative">Избриши</span></i>
                     </button>
                 </form>
             </div>
