@@ -2,6 +2,7 @@
 
 
 This project was build for the Advanced Human-Computer Interaction (HCI) course @ FCSE Skopje, 2021
+#### Team Members: Andrej Savatic and Bojan Spasovski
 
 ## Technologies used:
 * **Backend**
@@ -31,3 +32,5 @@ This project was build for the Advanced Human-Computer Interaction (HCI) course 
   1. Place your Google `client-id`, `client-secret` and set ddl-auto to CREATE in the `application.properties` file  
   2. Create MySQL table `autcards`
   3. Run the App
+
+**Note**: Because of github's blockage of putting `client-id` and `client-secret` in a public repository, they must be added manually when you clone the project
