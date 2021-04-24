@@ -2,7 +2,6 @@ package com.app.autcards.service.Impl;
 
 import com.app.autcards.model.Deck;
 import com.app.autcards.model.OauthUser;
-import com.app.autcards.model.enumerations.DeckOwner;
 import com.app.autcards.model.user_details.MyAuthenticatedPrincipal;
 import com.app.autcards.repository.DeckRepository;
 import com.app.autcards.service.DeckService;
@@ -10,10 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-
 import static com.app.autcards.model.enumerations.DeckOwner.*;
 
 @Service

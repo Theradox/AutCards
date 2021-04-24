@@ -2,7 +2,6 @@ package com.app.autcards.presentation;
 
 import com.app.autcards.model.Card;
 import com.app.autcards.model.Deck;
-import com.app.autcards.model.OauthUser;
 import com.app.autcards.service.CardService;
 import com.app.autcards.service.DeckService;
 import com.app.autcards.service.Impl.MyUserService;
@@ -12,10 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.validation.Valid;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -113,16 +110,6 @@ public class DeckController {
         return "redirect:/decks";
     }
 
-//    @GetMapping(value = "/{id}/editDeck")
-//    public String editDeckPage(Model model, @PathVariable Long id) {
-//        try {
-//            var deck = this.deckService.findById(id);
-//            model.addAttribute("deck", deck);
-//            return "deck_edit";
-//        } catch (RuntimeException ex) {
-//            return "redirect:/decks?error=" + ex.getMessage();
-//        }
-//    }
 
     @PostMapping(value = "/{id}/delete")
     public String deleteDeck(@PathVariable Long id) {

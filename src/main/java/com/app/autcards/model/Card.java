@@ -3,7 +3,6 @@ package com.app.autcards.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,10 +31,5 @@ public class Card {
     private String imageBase64;
 
     private LocalDateTime postponeDate;
-
-    public Card(@NotNull String question, @NotNull String answer) {
-        this.question = question;
-        this.answer = answer;
-    }
 
 }

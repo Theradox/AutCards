@@ -1,18 +1,14 @@
 package com.app.autcards.service.Impl;
 
 import com.app.autcards.model.Card;
-import com.app.autcards.model.Deck;
 import com.app.autcards.repository.CardRepository;
 import com.app.autcards.repository.DeckRepository;
 import com.app.autcards.service.CardService;
 import com.app.autcards.service.DeckService;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Base64;
@@ -26,26 +22,11 @@ public class CardServiceImpl implements CardService {
     private final DeckService deckService;
     private final DeckRepository deckRepository;
 
-
-    @Override
-    public List<Card> findAll() {
-        return this.cardRepository.findAll();
-    }
-
-    @Override
-    public List<Card> findAllByDeckId(Long deckId) {
-        return null;
-    }
-
     @Override
     public Card findById(Long id) {
         return this.cardRepository.findById(id).orElseThrow(() -> new ExpressionException("Card not found"));
     }
 
-    @Override
-    public Card saveCard(Card card) {
-        return this.cardRepository.save(card);
-    }
 
     @Override
     public Card save(Card card, Long deckId, MultipartFile image) throws IOException {
@@ -75,7 +56,6 @@ public class CardServiceImpl implements CardService {
         card1.setId(card.getId());
         card1.setAnswer(card.getAnswer());
         card1.setQuestion(card.getQuestion());
-//        card1.setImageBase64(card.getImageBase64());
         card1.setPostponeDate(LocalDateTime.now());
         return cardRepository.save(card1);
     }

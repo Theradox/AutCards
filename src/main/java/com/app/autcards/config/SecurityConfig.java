@@ -1,7 +1,6 @@
 package com.app.autcards.config;
 
 import com.app.autcards.service.Impl.MyUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,9 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutSuccessUrl("/login")
                 );
     }
-
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Bean
     public UserDetailsService userDetailsService() {

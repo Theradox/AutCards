@@ -1,9 +1,9 @@
 package com.app.autcards.repository;
+
 import com.app.autcards.model.Deck;
 import com.app.autcards.model.enumerations.DeckOwner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +16,5 @@ public interface DeckRepository extends JpaRepository<Deck, Long>{
     List<Deck> findAllByOwnerIs(DeckOwner owner);
     List<Deck> findByNameContainingAndUserEmail(String name, String email);
     List<Deck> findByNameContainingAndOwnerIs(String name, DeckOwner owner);
-    List<Deck> findByNameContaining(String name);
     Boolean existsByNameContainsAndDescriptionContainsAndUserEmail(String name, String description, String email);
 }

@@ -1,7 +1,6 @@
 package com.app.autcards.service;
 
 import com.app.autcards.model.Deck;
-
 import java.util.List;
 
 public interface DeckService {

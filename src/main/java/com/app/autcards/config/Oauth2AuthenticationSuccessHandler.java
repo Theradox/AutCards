@@ -7,17 +7,12 @@ import com.app.autcards.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 
 @Configuration
@@ -28,12 +23,7 @@ public class Oauth2AuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                                        Authentication authentication) throws IOException, ServletException {
-
-        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) authentication;
-        Map<String, Object> attributes = token.getPrincipal().getAttributes();
-
-        DefaultOidcUser oidcUser = (DefaultOidcUser) token.getPrincipal();
+                                        Authentication authentication) throws IOException {
 
         MyAuthenticatedPrincipal principal = (MyAuthenticatedPrincipal) authentication.getPrincipal();
         RoleType role = RoleType.valueOf((authentication.getAuthorities().toArray()[0]).toString());

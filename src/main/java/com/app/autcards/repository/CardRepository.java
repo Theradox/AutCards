@@ -3,7 +3,6 @@ package com.app.autcards.repository;
 import com.app.autcards.model.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 @Repository
